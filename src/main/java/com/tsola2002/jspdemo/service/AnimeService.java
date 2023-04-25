@@ -25,5 +25,23 @@ public class AnimeService {
     return animeRepo.findById(id).get();
   }
 
+  public boolean saveOrUpdateAnime(Anime anime) {
+    Anime updatedAnime = animeRepo.save(anime);
 
+    if (animeRepo.findById(updatedAnime.getId()) != null) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public boolean deleteAnime(Long id) {
+    animeRepo.deleteById(id);
+
+    if (animeRepo.findById(id) != null) {
+      return true;
+    }
+
+    return false;
+  }
 }
